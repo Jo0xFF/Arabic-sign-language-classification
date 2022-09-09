@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<title>Arabic Traffic Signs Detection - Prototype</title>
+	<!-- CSS  -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link href="./static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link rel="stylesheet" href="./static/css/style.css">
+</head>
+
+<body>
+	<nav style="background-color: #5e72e4" class="deep-purple darken-3"  role="navigation" style="height: 100%">
+		<div class="nav-wrapper container">
+			<a id="logo-container" class="brand-logo center" style="display: block">
+				<h5>Arabic Sign Language Translation</h5>
+			</a>
+		</div>
+	</nav>
+
+
+	<div class="section no-pad-bot" id="index-banner">
+		<div class="container">
+			<div class="row">
+				<form action='/' method="post" class="col s12" enctype="multipart/form-data">
+					<div class="row">
+
+						<div class="input-field col s5" style="margin-left: 20px; margin-top: 50px">
+							<div class="row">
+
+									<div class="row">
+										<label for="first_name" style="font-size: 1rem"><b>Upload Arabic Sign language to classify</b></label><br>
+										<div class="file-field input-field">
+											<div class="btn deep-purple darken-3">
+												<span>Browse</span>
+												<input type = "file" name="video_upload" id="video_upload" />
+											</div>
+											<div class="file-path-wrapper">
+												<input class="file-path validate" type="text" placeholder="Upload Video" name="image_name" id="image_name" />
+											</div>
+										</div>                    
+									</div>
+				
+									<fieldset id="radiofield" style="border: none;">
+										<label>
+											<input name="options" type="radio" value="model-V1" checked />
+											<span>CNN V1</span>
+										</label>
+										<label style="margin-left: 4em">
+											<input name="options" type="radio" value="model-V2"/>
+											<span>CNN V2</span>
+										</label>
+									</fieldset>
+
+									<div class="row center" style="margin-top: 5em">
+										<button id="submit" type="submit" class="btn-large deep-purple darken-3">Submit</button>
+									</div>
+
+							</div>
+						</div>
+
+						<div class="input-field col s3">
+							<div style="text-align: center; padding-top: 50px; margin-left: 100px">
+								<!-- <img src='{{ full_filename }}' width="500" height="300"> -->
+								<video width="300px" height="300px" controls muted poster="static/uploads/banner.png">
+										<source src="{{ full_filename }}" type="video/webm">
+										Sorry, your browser doesn't support embedded videos.
+								</video>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="valign-wrapper">
+						{% if init %}
+							{% if is_classified %}
+								<div class="card-panel green accent-3" style="padding:0;">
+									<p class="label-preds center-align">Interpreting results: <strong>{{predicted_label}}</strong></p>
+								</div>
+							{% else %}
+								<div class="card-panel red lighten-1" style="padding:0;">
+									<strong class="center-align">There's an Error with upload file or extension..</strong>
+								</div>
+							{% endif %}
+						{% endif %}
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<footer style="background-color: #5e72e4" class="deep-purple darken-3 footer">
+			<div style="margin: auto; text-align: center; color: white">
+					 Made by <a class="orange-text text-lighten-3" href="https://github.com/Jo0xFF">Jo</a>
+			</div>
+	</footer>
+
+	<!--  Scripts-->
+	<script src="./static/js/materialize.js"></script>
+
+	</body>
+</html>
+
